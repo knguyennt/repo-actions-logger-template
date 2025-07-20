@@ -35,18 +35,18 @@ jobs:
           git clone https://x-access-token:${{ env.PUSH_TOKEN }}@github.com/knguyennt/git-activity-logger.git
           cd git-activity-logger
 
-          # Ensure log.md exists and has header
-          if [ ! -f log.md ]; then
-            echo "# Project Push History Log" > log.md
-            echo "" >> log.md
-            echo "| DATE | REPO | COMMIT | MESSAGE |" >> log.md
-            echo "|------|------|--------|---------|" >> log.md
+          # Ensure README.md exists and has header
+          if [ ! -f README.md ]; then
+            echo "# Project Push History Log" > README.md
+            echo "" >> README.md
+            echo "| DATE | REPO | COMMIT | MESSAGE |" >> README.md
+            echo "|------|------|--------|---------|" >> README.md
           fi
 
           # Add log entry
-          echo "| $DATE | $REPO_NAME | [${COMMIT_SHA:0:7}]($COMMIT_URL) | $COMMIT_MESSAGE |" >> log.md
+          echo "| $DATE | $REPO_NAME | [${COMMIT_SHA:0:7}]($COMMIT_URL) | $COMMIT_MESSAGE |" >> README.md
 
           # Commit & push
-          git add log.md
+          git add README.md
           git commit -m "Log push from $REPO_NAME"
           git push
